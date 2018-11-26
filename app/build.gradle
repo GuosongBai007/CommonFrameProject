@@ -1,0 +1,102 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.frame.framedesignproject"
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+        renderscriptTargetApi rootProject.ext.targetSdk //must match target sdk and build tools
+        renderscriptSupportModeEnabled true
+        resConfigs "en"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi-v7a'
+        }
+
+        packagingOptions {
+            exclude 'lib/mips/libRSSupport.so'
+            exclude 'lib/mips/librsjni.so'
+        }
+
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    buildTypes {
+        release {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }
+
+            manifestPlaceholders = [JPUSH_PKGNAME            : "com.frame.framedesignproject",
+                                    JPUSH_APPKEY             : "",
+                                    JPUSH_CHANNEL            : "developer-default",
+                                    UMENG_APPKEY             : "5bed3684f1f556cab7000210",
+                                    UMENG_CHANNEL            : "developer-default",
+                                    HMS_APPID                : "100495907",
+                                    HMS_CPID                 : ""]
+
+        }
+
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+
+            lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }
+
+            manifestPlaceholders = [JPUSH_PKGNAME            : "com.frame.framedesignproject.debug",
+                                    JPUSH_APPKEY             : "",
+                                    JPUSH_CHANNEL            : "developer-default",
+                                    UMENG_APPKEY             : "5bed3684f1f556cab7000210",
+                                    UMENG_CHANNEL            : "developer-default",
+                                    HMS_APPID                : "100495907",
+                                    HMS_CPID                 : ""]
+
+        }
+    }
+
+    compileOptions {
+        // jdk版本支持1.8 支持1.8版本的新特性  比如lambda表达式
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+static def getCompileDate(){
+    return new Date().format("yyyy-MM-dd HH:mm:ss")
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':baselibrary')
+    implementation project(':pushlib')
+}

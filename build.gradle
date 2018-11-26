@@ -1,0 +1,83 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.0'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name
+
+            .equals("lint")
+            || task.name
+
+            .equals("clear")
+            || task.name
+
+            .contains("Aidl")
+            || task.name
+
+            .contains("mockableAndroidJar")
+            || task.name
+
+            .contains("UnitTest")
+            || task.name
+
+            .contains("AndroidTest")
+            || task.name
+
+            .contains("Ndk")
+            || task.name
+
+            .contains("Jni")) {
+        task.enabled = false
+    }
+}
+
+subprojects {
+
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex') ) {
+                details.useVersion '28.0.0'
+            } else if(details.requested.name.contains('com.android.support:multidex')){
+                details.useVersion '1.0.3'
+            }
+
+        }
+
+    }
+
+}
+
+
+ext {
+    javaVersion = JavaVersion.VERSION_1_8
+    buildToolsVersion = "28.0.2"
+    compileVersion = 28
+    minSdk = 16
+    targetSdk = 28
+    version_code = 1
+    version_name = "1.0.0"
+    supportVersion = "28.0.0"
+}
