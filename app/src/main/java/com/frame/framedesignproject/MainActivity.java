@@ -1,5 +1,6 @@
 package com.frame.framedesignproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
@@ -67,7 +68,8 @@ public class MainActivity extends BaseActivity {
 
         mHandler = new Handler();
         mTextView.setOnClickListener(v -> {
-            getUserInfo();
+//            getUserInfo();
+            startActivity(new Intent(this,SignatureActivty.class));
         });
     }
 

@@ -45,4 +45,66 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="BannerIndicatorView">
+        <attr name="normalDrawable" format="reference|color"/>
+        <attr name="selectDrawable" format="reference|color"/>
+        <attr name="indicatorInterval" format="dimension"/>
+        <attr name="normalColor" format="color"/>
+        <attr name="selectColor" format="color"/>
+        <attr name="indicatorRadius" format="dimension"/>
+    </declare-styleable>
+
+    <!-- 签名view -->
+    <declare-styleable name="SignatureView">
+        <attr name="minWidth" format="dimension" />
+        <attr name="maxWidth" format="dimension" />
+        <attr name="penColor" format="color" />
+        <attr name="velocityFilterWeight" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="DCBTabLayout">
+        <attr name="DCBTabIndicatorHeight" format="dimension" />
+        <attr name="DCBTabIndicatorWidth" format="dimension" />
+        <attr name="DCBTabIndicatorColor" format="color" />
+        <attr name="DCBTabPadding" format="dimension" />
+        <attr name="DCBTabPaddingStart" format="dimension" />
+        <attr name="DCBTabPaddingTop" format="dimension" />
+        <attr name="DCBTabPaddingEnd" format="dimension" />
+        <attr name="DCBTabPaddingBottom" format="dimension" />
+        <attr name="DCBTabTextAppearance" format="reference" />
+        <attr name="DCBTabTextColor" format="color" />
+        <attr name="DCBTabSelectedTextColor" format="color" />
+        <attr name="DCBTabMinWidth" format="dimension" />
+        <attr name="DCBTabMaxWidth" format="dimension" />
+        <attr name="DCBTabBackgroundColor" format="reference|color" />
+        <attr name="DCBTabHintPointColor" format="reference|color" />
+        <attr name="DCBTabSelectedBackgroundColor" format="reference|color" />
+        <!-- 在父view有圆角时 设置左右和中间三个drawable进去 这样左右靠边的item就能实现和父布局一样的圆角 -->
+        <attr name="DCBTabSelectedLeftBackgroundDrawable" format="reference"/>
+        <attr name="DCBTabSelectedRightBackgroundDrawable" format="reference"/>
+        <attr name="DCBTabSelectedBackgroundDrawable" format="reference"/>
+
+        <attr name="DCBTabContentStart" format="dimension" />
+        <attr name="DCBTabMode">
+            <enum name="scrollable" value="0x00000000" />
+            <enum name="fixed" value="0x00000001" />
+        </attr>
+        <attr name="DCBTabGravity" format="integer" />
+        <attr name="DCBTabTextSize" format="dimension" />
+        <attr name="DCBTabTextBold" format="boolean" />
+        <attr name="DCBTabSelectedTextSize" format="dimension" />
+        <attr name="DCBTabTextSelectedBold" format="boolean" />
+        <attr name="DCBTabDisplayNum" format="integer" />
+        <attr name="DCBTabTextAllCaps" format="boolean" />
+        <attr name="DCBTabDividerHeight" format="dimension" />
+        <attr name="DCBTabDividerWidth" format="dimension" />
+        <attr name="DCBTabDividerWidthWidthText" format="boolean" />
+        <attr name="DCBTabDividerColor" format="color" />
+        <attr name="DCBTabDividerGravity">
+            <enum name="top" value="0x00000000" />
+            <enum name="center" value="0x00000001" />
+            <enum name="bottom" value="0x00000002" />
+        </attr>
+    </declare-styleable>
+
 </resources>
